@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">ClimaChallenge</string>
-    <string name="title_home">Clima hoy</string>
-    <string name="title_dashboard">Clima en el mundo</string>
+    <string name="title_today">Weather today</string>
+    <string name="title_worldmap">World weather</string>
 </resources>
