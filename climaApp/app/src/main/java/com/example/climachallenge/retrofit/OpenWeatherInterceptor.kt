@@ -9,7 +9,11 @@ class OpenWeatherInterceptor : Interceptor {
         val urlWithParams = chain.request()
                 .url
                 .newBuilder()
-                .addQueryParameter(Constants.URL_PARAM_API_KEY, Constants.OPENWEATHER_API_KEY)
+                .addQueryParameter(Constants.URL_PARAM_LAT, Constants.VALUE_LAT)
+                .addQueryParameter(Constants.URL_PARAM_LON, Constants.VALUE_LON)
+                .addQueryParameter(Constants.URL_PARAM_EXCLUDE, Constants.VALUE_EXCLUDE)
+                .addQueryParameter(Constants.URL_PARAM_UNITS, Constants.VALUE_UNITS)
+                .addQueryParameter(Constants.URL_PARAM_OPENWEATHER_API_KEY, Constants.OPENWEATHER_API_KEY)
                 .build()
 
         var request = chain.request()

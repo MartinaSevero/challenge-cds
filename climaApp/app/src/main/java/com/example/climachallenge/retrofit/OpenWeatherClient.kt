@@ -15,7 +15,7 @@ class OpenWeatherClient {
             if (field == null) {
                 instance = OpenWeatherClient()
             }
-            return instance
+            return field
         }
     }
     //Builder
@@ -35,7 +35,7 @@ class OpenWeatherClient {
 
         //Instantiate retrofit service from retrofit object
         openWeatherService = retrofit.create(OpenWeatherService::class.java)
-
-        fun getOpenWeatherService() = openWeatherService
     }
+
+    fun getOpenWeatherService() = openWeatherService
 }

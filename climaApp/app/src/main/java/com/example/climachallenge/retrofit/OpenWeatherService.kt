@@ -5,6 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface OpenWeatherService {
-    @GET("onecall?lat=-34.90&lon=-56.17&exclude=hourly,minutely&units=metric&appid=0ef07f6b9a710e651a88f0de691fbdb3")
+    @GET("onecall")
+    //@GET("onecall?lat=-34.90&lon=-56.17&exclude=hourly,minutely&units=metric")
     fun getWeatherData(): Call<OpenWeatherResponse>
 }

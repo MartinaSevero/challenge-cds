@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_today"
-        android:name="com.example.climachallenge.ui.home.HomeFragment"
+        android:name="com.example.climachallenge.ui.weatherToday.WeatherTodayFragment"
         android:label="@string/title_today"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_weather_today_list" />
 
     <fragment
         android:id="@+id/navigation_worldmap"
