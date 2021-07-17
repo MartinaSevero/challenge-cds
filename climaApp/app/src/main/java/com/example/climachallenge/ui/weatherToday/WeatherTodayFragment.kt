@@ -14,9 +14,9 @@ import com.example.climachallenge.R
 import com.example.climachallenge.retrofit.models.OpenWeatherResponse
 
 class WeatherTodayFragment : Fragment() {
-    private lateinit var weatherTodayViewModel: WeatherTodayViewModel
-    private lateinit var weatherTodayAdapter: WeatherTodayRecyclerViewAdapter
-    private lateinit var weatherData: OpenWeatherResponse
+    private var weatherTodayViewModel: WeatherTodayViewModel? = null
+    private var weatherTodayAdapter: WeatherTodayRecyclerViewAdapter? = null
+    private var weatherData: OpenWeatherResponse? = null
 
     private var columnCount = 1
 
@@ -26,6 +26,8 @@ class WeatherTodayFragment : Fragment() {
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
+
+        weatherTodayViewModel?.assignWeatherData(-34.90, -56.17)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -48,10 +50,12 @@ class WeatherTodayFragment : Fragment() {
             }
         }
 
-        // Weather data observer
-        weatherTodayViewModel.getWeatherData().observe(viewLifecycleOwner, Observer {
-            weatherData = it
-            weatherTodayAdapter.setData(weatherData.daily)
+        // Weather data observer FIXME
+        weatherTodayViewModel!!.getWeatherData()?.observe(viewLifecycleOwner, Observer {
+            if (weatherData != null) {
+                weatherData = it
+                weatherTodayAdapter!!.setData(weatherData?.daily)
+            }
         })
 
         return view

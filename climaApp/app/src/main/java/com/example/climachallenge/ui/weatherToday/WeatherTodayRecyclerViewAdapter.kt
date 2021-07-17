@@ -9,7 +9,7 @@ import com.example.climachallenge.R
 import com.example.climachallenge.retrofit.models.Daily
 import com.example.climachallenge.retrofit.models.OpenWeatherResponse
 
-class WeatherTodayRecyclerViewAdapter()
+class WeatherTodayRecyclerViewAdapter
     : RecyclerView.Adapter<WeatherTodayRecyclerViewAdapter.ViewHolder>() {
 
     private val wOnClickListener: View.OnClickListener
@@ -17,7 +17,7 @@ class WeatherTodayRecyclerViewAdapter()
 
     init {
         wOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as OpenWeatherResponse
+            v.tag as OpenWeatherResponse
         }
     }
 
@@ -34,7 +34,8 @@ class WeatherTodayRecyclerViewAdapter()
     }
 
     override fun getItemCount(): Int = dailyWeatherList.size
-    fun setData(weatherDailyData: List<Daily>) {
+
+    fun setData(weatherDailyData: List<Daily>?) {
         dailyWeatherList = weatherDailyData!!
         notifyDataSetChanged()
     }

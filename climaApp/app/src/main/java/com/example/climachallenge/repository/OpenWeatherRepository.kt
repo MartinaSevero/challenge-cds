@@ -19,15 +19,16 @@ class OpenWeatherRepository {
     init {
         openWeatherClient = OpenWeatherClient.instance
         openWeatherService = openWeatherClient?.getOpenWeatherService()
-        weatherData = weatherData()
     }
 
-    fun weatherData(): MutableLiveData<OpenWeatherResponse>? {
-        val call: Call<OpenWeatherResponse>? = openWeatherService?.getWeatherData()
-        call?.enqueue(object: Callback<OpenWeatherResponse> {
+    fun obtainWeatherData(lat: Double, lon: Double): MutableLiveData<OpenWeatherResponse>? {
+        val call: Call<OpenWeatherResponse>? = openWeatherService?.getWeatherData(lat, lon, "hourly,minutely", "metric") //FIXME: la coma no se pasa bien por query
+        call?.enqueue(object : Callback<OpenWeatherResponse> {
             override fun onResponse(call: Call<OpenWeatherResponse>, response: Response<OpenWeatherResponse>) {
                 if (response.isSuccessful) {
                     weatherData?.value = response.body()
+                } else {
+                    Toast.makeText(MyApp.instance, "Error in the response:" + response.errorBody(), Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -36,7 +37,7 @@ class OpenWeatherRepository {
             }
 
         })
-
+        Log.i("DENTRO DE REPO", "" + weatherData) //FIXME
         return weatherData
     }
 }

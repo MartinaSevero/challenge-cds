@@ -3,9 +3,12 @@ package com.example.climachallenge.retrofit
 import com.example.climachallenge.retrofit.models.OpenWeatherResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface OpenWeatherService {
     @GET("onecall")
-    //@GET("onecall?lat=-34.90&lon=-56.17&exclude=hourly,minutely&units=metric")
-    fun getWeatherData(): Call<OpenWeatherResponse>
+    fun getWeatherData(@Query("lat") lat: Double,
+                       @Query("lon") lon: Double,
+                       @Query("exclude") exclude: String?,
+                       @Query("units") units: String?): Call<OpenWeatherResponse>
 }
