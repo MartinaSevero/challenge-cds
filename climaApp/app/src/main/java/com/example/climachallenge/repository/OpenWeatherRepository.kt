@@ -14,7 +14,7 @@ import retrofit2.Response
 class OpenWeatherRepository {
     var openWeatherService: OpenWeatherService? = null
     var openWeatherClient: OpenWeatherClient? = null
-    var weatherData: MutableLiveData<OpenWeatherResponse>? = null
+    var weatherData: MutableLiveData<OpenWeatherResponse> = MutableLiveData<OpenWeatherResponse>()
 
     init {
         openWeatherClient = OpenWeatherClient.instance
@@ -22,11 +22,11 @@ class OpenWeatherRepository {
     }
 
     fun obtainWeatherData(lat: Double, lon: Double): MutableLiveData<OpenWeatherResponse>? {
-        val call: Call<OpenWeatherResponse>? = openWeatherService?.getWeatherData(lat, lon, "hourly,minutely", "metric") //FIXME: la coma no se pasa bien por query
+        val call: Call<OpenWeatherResponse>? = openWeatherService?.getWeatherData(lat, lon, "hourly,minutely", "metric")
         call?.enqueue(object : Callback<OpenWeatherResponse> {
             override fun onResponse(call: Call<OpenWeatherResponse>, response: Response<OpenWeatherResponse>) {
                 if (response.isSuccessful) {
-                    weatherData?.value = response.body()
+                    weatherData.value = response.body()
                 } else {
                     Toast.makeText(MyApp.instance, "Error in the response:" + response.errorBody(), Toast.LENGTH_LONG).show()
                 }
@@ -37,7 +37,6 @@ class OpenWeatherRepository {
             }
 
         })
-        Log.i("DENTRO DE REPO", "" + weatherData) //FIXME
         return weatherData
     }
 }

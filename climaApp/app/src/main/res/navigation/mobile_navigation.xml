@@ -13,8 +13,8 @@
 
     <fragment
         android:id="@+id/navigation_worldmap"
-        android:name="com.example.climachallenge.ui.dashboard.DashboardFragment"
+        android:name="com.example.climachallenge.ui.worldWeather.WorldWeatherFragment"
         android:label="@string/title_worldmap"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_world_weather" />
 
 </navigation>

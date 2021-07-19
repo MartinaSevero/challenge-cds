@@ -1,6 +1,5 @@
 package com.example.climachallenge.ui.weatherToday
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.climachallenge.repository.OpenWeatherRepository
@@ -12,14 +11,10 @@ class WeatherTodayViewModel: ViewModel() {
 
     init {
         openWeatherRepository = OpenWeatherRepository()
-        //weatherData = openWeatherRepository?.obtainWeatherData(34.2,36.5)!! FIXME
     }
 
-    fun assignWeatherData(lat: Double, lon: Double) {
-        weatherData = openWeatherRepository.obtainWeatherData(lat, lon)!!
-    }
-
-    fun getWeatherData(): LiveData<OpenWeatherResponse>? {
+    fun getWeatherData(lat: Double, lon: Double): LiveData<OpenWeatherResponse>? {
+        weatherData = openWeatherRepository.obtainWeatherData(lat, lon)
         return weatherData
     }
 }

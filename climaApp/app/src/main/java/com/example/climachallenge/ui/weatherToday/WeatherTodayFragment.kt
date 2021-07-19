@@ -1,6 +1,7 @@
 package com.example.climachallenge.ui.weatherToday
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,8 +27,6 @@ class WeatherTodayFragment : Fragment() {
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
-
-        weatherTodayViewModel?.assignWeatherData(-34.90, -56.17)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -50,9 +49,9 @@ class WeatherTodayFragment : Fragment() {
             }
         }
 
-        // Weather data observer FIXME
-        weatherTodayViewModel!!.getWeatherData()?.observe(viewLifecycleOwner, Observer {
-            if (weatherData != null) {
+        // Weather data observer
+        weatherTodayViewModel!!.getWeatherData(-34.90, -56.17)?.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
                 weatherData = it
                 weatherTodayAdapter!!.setData(weatherData?.daily)
             }
