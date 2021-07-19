@@ -38,11 +38,11 @@ class WorldWeatherFragment : Fragment(), OnMapReadyCallback {
         mapFragment?.getMapAsync(this)
     }
 
-    override fun onMapReady(map: GoogleMap) {
+    override fun onMapReady(map: GoogleMap) { //FIXME
         myMap = map
         setMapSettings()
         val sydney = LatLng(-34.0, 151.0)
-        myMarker = map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        myMarker = map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney")) //FIXME
         map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
         myMap.setOnMapClickListener { latLng ->
@@ -54,7 +54,7 @@ class WorldWeatherFragment : Fragment(), OnMapReadyCallback {
                             latLng.latitude,
                             latLng.longitude
                         )
-                    ).title("Marker in Sydney")
+                    ).title("Marker in Sydney") //FIXME
                 )
             }
         }

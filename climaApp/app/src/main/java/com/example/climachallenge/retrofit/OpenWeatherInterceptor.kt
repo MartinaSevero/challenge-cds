@@ -20,7 +20,7 @@ class OpenWeatherInterceptor : Interceptor {
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "*/*")
                 .build()
-        Log.i("DENTRO DE INTERCEPTOR", "" + request) //FIXME
+
         return chain.proceed(request)
     }
 
