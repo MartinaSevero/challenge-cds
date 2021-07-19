@@ -10,4 +10,4 @@
     android:paddingRight="15dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.weatherToday.WeatherTodayFragment"
-    tools:listitem="@layout/fragment_weather_today" />
+    tools:listitem="@layout/fragment_weather_today_list_item" />

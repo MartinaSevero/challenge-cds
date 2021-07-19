@@ -1,16 +1,16 @@
 package com.example.climachallenge.ui.weatherToday
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.climachallenge.MainActivity
 import com.example.climachallenge.R
 import com.example.climachallenge.retrofit.models.OpenWeatherResponse
 
@@ -29,8 +29,10 @@ class WeatherTodayFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_weather_today_list, container, false)
 
         // Obtain ViewModel
@@ -50,12 +52,15 @@ class WeatherTodayFragment : Fragment() {
         }
 
         // Weather data observer
-        weatherTodayViewModel!!.getWeatherData(-34.90, -56.17)?.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                weatherData = it
-                weatherTodayAdapter!!.setData(weatherData?.daily)
-            }
-        })
+        weatherTodayViewModel!!.getWeatherData(-34.90, -56.17)?.observe(
+            viewLifecycleOwner,
+            Observer {
+                if (it != null) {
+                    weatherData = it
+                    weatherTodayAdapter!!.setData(weatherData?.daily)
+                    (requireActivity() as MainActivity).supportActionBar?.title = resources.getString(R.string.title_today) + " - " + weatherData!!.timezone
+                }
+            })
 
         return view
     }

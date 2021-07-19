@@ -7,7 +7,7 @@
     android:paddingBottom="15dp">
 
     <TextView
-        android:id="@+id/text_view_weather_day"
+        android:id="@+id/text_view_weather_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#B6E0FF"

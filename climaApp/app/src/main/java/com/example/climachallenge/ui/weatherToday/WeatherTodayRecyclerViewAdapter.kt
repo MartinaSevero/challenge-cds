@@ -31,7 +31,7 @@ class WeatherTodayRecyclerViewAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_weather_today, parent, false)
+                .inflate(R.layout.fragment_weather_today_list_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -59,6 +59,6 @@ class WeatherTodayRecyclerViewAdapter
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvWeatherData: TextView = view.findViewById(R.id.text_view_weather_data)
-        val tvWeatherDay: TextView = view.findViewById(R.id.text_view_weather_day)
+        val tvWeatherDay: TextView = view.findViewById(R.id.text_view_weather_date)
     }
 }
