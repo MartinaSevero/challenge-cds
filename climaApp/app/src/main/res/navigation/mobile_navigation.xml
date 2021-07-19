@@ -3,23 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_today">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.climachallenge.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_today"
+        android:name="com.example.climachallenge.ui.weatherToday.WeatherTodayFragment"
+        android:label="@string/title_today"
+        tools:layout="@layout/fragment_weather_today_list" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.climachallenge.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_worldmap"
+        android:name="com.example.climachallenge.ui.worldWeather.WorldWeatherFragment"
+        android:label="@string/title_worldmap"
+        tools:layout="@layout/fragment_world_weather" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.climachallenge.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
