@@ -44,7 +44,7 @@
         android:layout_marginEnd="8dp"
         android:text="@string/weather_map_temp"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/image_view_weather_map_icon"
         app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_date"
         app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_date" />
@@ -122,25 +122,14 @@
         android:id="@+id/text_view_weather_map_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="@string/weather_map_description"
         android:textColor="#7C7C7C"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/image_view_weather_map_description_icon"
         app:layout_constraintEnd_toStartOf="@+id/image_view_weather_map_icon"
-        app:layout_constraintStart_toEndOf="@+id/image_view_weather_map_description_icon"
-        app:layout_constraintTop_toTopOf="@+id/image_view_weather_map_description_icon" />
-
-    <ImageView
-        android:id="@+id/image_view_weather_map_description_icon"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/weather_map_description_icon"
-        app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_temp"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_temp"
-        tools:src="@drawable/ic_weather_today" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_temp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

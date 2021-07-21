@@ -19,5 +19,4 @@
     <string name="weather_map_wind_speed">Wind speed</string>
     <string name="weather_map_description">Weather description</string>
     <string name="weather_map_icon">weather icon</string>
-    <string name="weather_map_description_icon">description icon</string>
 </resources>
