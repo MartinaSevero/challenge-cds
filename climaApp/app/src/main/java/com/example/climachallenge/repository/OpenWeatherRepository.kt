@@ -39,4 +39,23 @@ class OpenWeatherRepository {
         })
         return weatherData
     }
+    //FIXME poner strings en constants
+    fun obtainWeatherDataFromMap(lat: Double, lon: Double): MutableLiveData<OpenWeatherResponse>? {
+        val call: Call<OpenWeatherResponse>? = openWeatherService?.getWeatherData(lat, lon, "daily,hourly,minutely", "metric")
+        call?.enqueue(object : Callback<OpenWeatherResponse> {
+            override fun onResponse(call: Call<OpenWeatherResponse>, response: Response<OpenWeatherResponse>) {
+                if (response.isSuccessful) {
+                    weatherData.value = response.body()
+                } else {
+                    Toast.makeText(MyApp.instance, "Error in the response:" + response.errorBody(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<OpenWeatherResponse>, t: Throwable) {
+                Toast.makeText(MyApp.instance, "Error in the call", Toast.LENGTH_LONG).show()
+            }
+
+        })
+        return weatherData
+    }
 }
