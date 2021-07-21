@@ -2,4 +2,9 @@
     <string name="app_name">ClimaChallenge</string>
     <string name="title_today">Weather today</string>
     <string name="title_worldmap">World weather</string>
+    <string name="denied_location_title">NOTICE</string>
+    <string name="denied_location_message">Error loading current location. Default location data will be loaded</string>
+    <string name="denied_location_button">OK</string>
+    <string name="location_error">An error occurred while loading current location</string>
+    <string name="gps_error">Error while loading current location from GPS</string>
 </resources>
