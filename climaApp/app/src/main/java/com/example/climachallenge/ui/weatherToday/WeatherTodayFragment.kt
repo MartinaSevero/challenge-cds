@@ -162,16 +162,16 @@ class WeatherTodayFragment : Fragment(), PermissionListener {
 
     private fun setAdapterData(latitude: Double = -34.90, longitude: Double = -56.17) {
         // Weather data observer
-        weatherTodayViewModel!!.getWeatherData(latitude, longitude)?.observe(
+        weatherTodayViewModel?.getWeatherData(latitude, longitude)?.observe(
             viewLifecycleOwner,
             Observer {
                 if (it != null) {
                     weatherData = it
-                    weatherTodayAdapter!!.setData(weatherData?.daily)
+                    weatherTodayAdapter?.setData(weatherData?.daily)
                     (requireActivity() as MainActivity).supportActionBar?.title =
                         resources.getString(
                             R.string.title_today
-                        ) + " - " + weatherData!!.timezone
+                        ) + " - " + weatherData?.timezone
                 }
             })
     }
