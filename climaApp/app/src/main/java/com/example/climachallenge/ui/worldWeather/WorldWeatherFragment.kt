@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.climachallenge.MainActivity
 import com.example.climachallenge.R
 import com.example.climachallenge.retrofit.models.OpenWeatherResponse
 import com.google.android.gms.maps.CameraUpdateFactory

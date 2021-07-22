@@ -11,12 +11,11 @@
     <!-- fragment_weather_map_dialog -->
     <string name="weather_map_timezone">Timezone</string>
     <string name="weather_map_date">Date</string>
-    <string name="weather_map_sunrise">Sunrise</string>
-    <string name="weather_map_sunset">Sunset</string>
+    <string name="weather_map_sunrise">Sunrise: %1$s</string>
+    <string name="weather_map_sunset">Sunset: %1$s</string>
     <string name="weather_map_temp">Temperature</string>
-    <string name="weather_map_humidity">Humidity</string>
-    <string name="weather_map_visibility">Visibility</string>
-    <string name="weather_map_wind_speed">Wind speed</string>
+    <string name="weather_map_humidity">Humidity: %1$s</string>
+    <string name="weather_map_wind_speed">Wind speed: %1$s</string>
     <string name="weather_map_description">Weather description</string>
     <string name="weather_map_icon">weather icon</string>
 </resources>

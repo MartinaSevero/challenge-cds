@@ -1,5 +1,6 @@
 package com.example.climachallenge.ui.worldWeather
 
+import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,17 +18,26 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.*
+import kotlin.math.roundToInt
 
 class WeatherMapDialogFragment(private val weatherData: OpenWeatherResponse) : DialogFragment() {
 
     private val currentWeather = weatherData.current
 
-    override fun onStart() { //FIXME
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         dialog?.window?.setLayout(
             ConstraintLayout.LayoutParams.MATCH_PARENT,
             ConstraintLayout.LayoutParams.WRAP_CONTENT
         )
+    }
+
+    override fun onDestroyView() {//FIXME verificar si es necesario
+        val dialog: Dialog? = dialog
+        if (dialog != null && retainInstance) {
+            dialog.setDismissMessage(null)
+        }
+        super.onDestroyView()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -42,7 +52,6 @@ class WeatherMapDialogFragment(private val weatherData: OpenWeatherResponse) : D
         val tvDate: TextView = view.findViewById(R.id.text_view_weather_map_date)
         val tvTemperature: TextView = view.findViewById(R.id.text_view_weather_map_temp)
         val tvHumidity: TextView = view.findViewById(R.id.text_view_weather_map_humidity)
-        val tvVisibility: TextView = view.findViewById(R.id.text_view_weather_map_visibility)
         val tvWindSpeed: TextView = view.findViewById(R.id.text_view_weather_map_wind_speed)
         val tvSunrise: TextView = view.findViewById(R.id.text_view_weather_map_sunrise)
         val tvSunset: TextView = view.findViewById(R.id.text_view_weather_map_sunset)
@@ -52,41 +61,51 @@ class WeatherMapDialogFragment(private val weatherData: OpenWeatherResponse) : D
         //FIXME indicate which data is showing for each tv
         tvTimezone.text = weatherData.timezone
         tvDate.text = formatWeatherDate(currentWeather.dt)
-        tvTemperature.text = currentWeather.temp.toString()
-        tvHumidity.text = currentWeather.humidity.toString()
-        tvVisibility.text = currentWeather.visibility.toString()
-        tvWindSpeed.text = currentWeather.wind_speed.toString()
-        tvSunrise.text = currentWeather.sunrise.toString()
-        tvSunset.text = currentWeather.sunset.toString()
+        tvTemperature.text = currentWeather.temp.roundToInt().toString() + "º"
+        tvHumidity.text = getString(R.string.weather_map_humidity, currentWeather.humidity.roundToInt().toString() + " %")
+        val windSpeed = (currentWeather.wind_speed * 3.6).roundToInt()
+        tvWindSpeed.text = getString(R.string.weather_map_wind_speed, "$windSpeed km/h")
+        tvSunrise.text = getString(R.string.weather_map_sunrise, formatSunData(currentWeather.sunrise))
+        tvSunset.text = getString(R.string.weather_map_sunset, formatSunData(currentWeather.sunset))
         tvWeatherDescription.text = currentWeather.weather[0].description
         tvWeatherIcon.setImageResource(getWeatherIcon())
+
+        retainInstance = true
+        view.setOnClickListener {
+            dialog?.dismiss()
+        }
 
         return view
     }
 
     private fun getWeatherIcon(): Int {
-        val weatherCondition = currentWeather.weather[0].main
-        var icon = 0
-        when (weatherCondition) {
-            "Thunderstorm" -> icon = R.drawable.ic_weather_thunderstorm
-            "Drizzle" -> icon = R.drawable.ic_weather_drizzle
-            "Rain" -> icon = R.drawable.ic_weather_rain
-            "Snow" -> icon = R.drawable.ic_weather_snow
-            "Clear" -> icon = R.drawable.ic_weather_clear
-            "Clouds" -> icon = R.drawable.ic_weather_clouds
+        return when (currentWeather.weather[0].main) {
+            "Thunderstorm" -> R.drawable.ic_weather_thunderstorm
+            "Drizzle" -> R.drawable.ic_weather_drizzle
+            "Rain" -> R.drawable.ic_weather_rain
+            "Snow" -> R.drawable.ic_weather_snow
+            "Clear" -> R.drawable.ic_weather_clear
+            "Clouds" -> R.drawable.ic_weather_clouds
             else -> { //Atmosphere
-                icon = R.drawable.ic_weather_atmosphere
+                R.drawable.ic_weather_atmosphere
             }
         }
-
-        return icon
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun formatWeatherDate(datetime: Double): String {
         val date = Date(datetime.toLong() * 1000).toInstant()
         val localDateTime = LocalDateTime.ofInstant(date, ZoneId.systemDefault())
+
         return localDateTime.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun formatSunData(datetime: Double): String {
+        val date = Date(datetime.toLong() * 1000).toInstant()
+        val localDateTime = LocalDateTime.ofInstant(date, ZoneId.systemDefault())
+
+        return localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
     }
 
 }
