@@ -50,10 +50,10 @@
         android:id="@+id/text_view_weather_map_humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/weather_humidity"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_date"
         app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_temp" />
 
@@ -64,7 +64,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/weather_wind_speed"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_temp"
         app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_humidity" />
 
@@ -75,7 +75,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/weather_sunrise"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_date"
         app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_wind_speed" />
 
@@ -86,7 +86,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/weather_sunset"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_sunrise"
         app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_sunrise" />
 

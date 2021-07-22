@@ -7,7 +7,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
-import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -28,7 +27,7 @@ class OpenWeatherClient {
 
     //Builder
     init {
-        var okHttpClientBuilder: OkHttpClient.Builder =
+        val okHttpClientBuilder: OkHttpClient.Builder =
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
                 unSafeOkHttpClient()
             } else {

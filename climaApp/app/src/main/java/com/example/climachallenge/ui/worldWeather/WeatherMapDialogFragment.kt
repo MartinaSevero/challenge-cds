@@ -32,7 +32,7 @@ class WeatherMapDialogFragment(private val weatherData: OpenWeatherResponse) : D
         )
     }
 
-    override fun onDestroyView() {//FIXME verificar si es necesario
+    override fun onDestroyView() {
         val dialog: Dialog? = dialog
         if (dialog != null && retainInstance) {
             dialog.setDismissMessage(null)
@@ -58,11 +58,14 @@ class WeatherMapDialogFragment(private val weatherData: OpenWeatherResponse) : D
         val tvWeatherDescription: TextView =
             view.findViewById(R.id.text_view_weather_map_description)
         val tvWeatherIcon: ImageView = view.findViewById(R.id.image_view_weather_map_icon)
-        //FIXME indicate which data is showing for each tv
+
         tvTimezone.text = getString(R.string.weather_map_timezone, weatherData.timezone)
         tvDate.text = formatWeatherDate(currentWeather.dt)
         tvTemperature.text = currentWeather.temp.roundToInt().toString() + "º"
-        tvHumidity.text = getString(R.string.weather_humidity, currentWeather.humidity.roundToInt().toString() + " %")
+        tvHumidity.text = getString(
+            R.string.weather_humidity,
+            currentWeather.humidity.roundToInt().toString() + " %"
+        )
         val windSpeed = (currentWeather.wind_speed * 3.6).roundToInt()
         tvWindSpeed.text = getString(R.string.weather_wind_speed, "$windSpeed km/h")
         tvSunrise.text = getString(R.string.weather_sunrise, formatSunData(currentWeather.sunrise))

@@ -38,7 +38,7 @@ class OpenWeatherRepository {
         })
         return weatherData
     }
-    //FIXME poner strings en constants
+
     fun obtainWeatherDataFromMap(lat: Double, lon: Double): MutableLiveData<OpenWeatherResponse>? {
         val call: Call<OpenWeatherResponse>? = openWeatherService?.getWeatherData(lat, lon, "daily,hourly,minutely", "metric")
         call?.enqueue(object : Callback<OpenWeatherResponse> {

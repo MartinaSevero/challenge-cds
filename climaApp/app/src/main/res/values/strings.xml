@@ -5,8 +5,8 @@
     <string name="denied_location_title">NOTICE</string>
     <string name="denied_location_message">Error loading current location. Default location data will be loaded</string>
     <string name="denied_location_button">OK</string>
-    <string name="location_error">An error occurred while loading current location</string>
-    <string name="gps_error">Error while loading current location from GPS</string>
+    <string name="location_error">An error occurred while loading current location. Default location data will be loaded</string>
+    <string name="gps_error">Error while loading current location from GPS. Default location data will be loaded</string>
 
     <!-- fragment_weather_today_list_item -->
     <string name="weather_date">Date</string>

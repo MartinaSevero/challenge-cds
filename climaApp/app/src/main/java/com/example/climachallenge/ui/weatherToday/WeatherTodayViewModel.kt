@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.climachallenge.repository.OpenWeatherRepository
 import com.example.climachallenge.retrofit.models.OpenWeatherResponse
 
-class WeatherTodayViewModel: ViewModel() {
+class WeatherTodayViewModel : ViewModel() {
     private var openWeatherRepository: OpenWeatherRepository
     private var weatherData: LiveData<OpenWeatherResponse>? = null
 
