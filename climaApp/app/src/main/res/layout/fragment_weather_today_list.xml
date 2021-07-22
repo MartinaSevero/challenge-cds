@@ -6,8 +6,6 @@
     android:name="com.example.climachallenge.ui.weatherToday.OpenWeatherResponseFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.weatherToday.WeatherTodayFragment"
     tools:listitem="@layout/fragment_weather_today_list_item" />

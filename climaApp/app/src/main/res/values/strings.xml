@@ -8,14 +8,18 @@
     <string name="location_error">An error occurred while loading current location</string>
     <string name="gps_error">Error while loading current location from GPS</string>
 
+    <!-- fragment_weather_today_list_item -->
+    <string name="weather_date">Date</string>
+    <string name="weather_sunrise">Sunrise: %1$s</string>
+    <string name="weather_sunset">Sunset: %1$s</string>
+    <string name="weather_temp_min">Min: %1$s</string>
+    <string name="weather_temp_max">Max: %1$s</string>
+    <string name="weather_humidity">Humidity: %1$s</string>
+    <string name="weather_wind_speed">Wind speed: %1$s</string>
+    <string name="weather_description">Weather description</string>
+    <string name="weather_icon">weather icon</string>
+
     <!-- fragment_weather_map_dialog -->
-    <string name="weather_map_timezone">Timezone</string>
-    <string name="weather_map_date">Date</string>
-    <string name="weather_map_sunrise">Sunrise: %1$s</string>
-    <string name="weather_map_sunset">Sunset: %1$s</string>
+    <string name="weather_map_timezone">Timezone - %1$s</string>
     <string name="weather_map_temp">Temperature</string>
-    <string name="weather_map_humidity">Humidity: %1$s</string>
-    <string name="weather_map_wind_speed">Wind speed: %1$s</string>
-    <string name="weather_map_description">Weather description</string>
-    <string name="weather_map_icon">weather icon</string>
 </resources>

@@ -59,14 +59,14 @@ class WeatherMapDialogFragment(private val weatherData: OpenWeatherResponse) : D
             view.findViewById(R.id.text_view_weather_map_description)
         val tvWeatherIcon: ImageView = view.findViewById(R.id.image_view_weather_map_icon)
         //FIXME indicate which data is showing for each tv
-        tvTimezone.text = weatherData.timezone
+        tvTimezone.text = getString(R.string.weather_map_timezone, weatherData.timezone)
         tvDate.text = formatWeatherDate(currentWeather.dt)
         tvTemperature.text = currentWeather.temp.roundToInt().toString() + "º"
-        tvHumidity.text = getString(R.string.weather_map_humidity, currentWeather.humidity.roundToInt().toString() + " %")
+        tvHumidity.text = getString(R.string.weather_humidity, currentWeather.humidity.roundToInt().toString() + " %")
         val windSpeed = (currentWeather.wind_speed * 3.6).roundToInt()
-        tvWindSpeed.text = getString(R.string.weather_map_wind_speed, "$windSpeed km/h")
-        tvSunrise.text = getString(R.string.weather_map_sunrise, formatSunData(currentWeather.sunrise))
-        tvSunset.text = getString(R.string.weather_map_sunset, formatSunData(currentWeather.sunset))
+        tvWindSpeed.text = getString(R.string.weather_wind_speed, "$windSpeed km/h")
+        tvSunrise.text = getString(R.string.weather_sunrise, formatSunData(currentWeather.sunrise))
+        tvSunset.text = getString(R.string.weather_sunset, formatSunData(currentWeather.sunset))
         tvWeatherDescription.text = currentWeather.weather[0].description
         tvWeatherIcon.setImageResource(getWeatherIcon())
 
