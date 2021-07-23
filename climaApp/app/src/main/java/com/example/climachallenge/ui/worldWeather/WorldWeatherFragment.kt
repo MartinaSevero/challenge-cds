@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.climachallenge.R
+import com.example.climachallenge.retrofit.models.OpenWeatherResponse
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -18,8 +21,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 class WorldWeatherFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var worldWeatherViewModel: WorldWeatherViewModel
+    private var weatherFromMap: LiveData<OpenWeatherResponse>? = null
     private lateinit var myMap: GoogleMap
-    private lateinit var myMarker: Marker
+    private var myMarker: Marker? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,21 +45,43 @@ class WorldWeatherFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(map: GoogleMap) {
         myMap = map
         setMapSettings()
-        val sydney = LatLng(-34.0, 151.0)
-        myMarker = map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-
         myMap.setOnMapClickListener { latLng ->
             if (latLng != null) {
-                myMarker.remove()
-                myMarker = map.addMarker(
+                myMarker?.remove()
+                myMarker = myMap.addMarker(
                     MarkerOptions().position(
                         LatLng(
                             latLng.latitude,
                             latLng.longitude
                         )
-                    ).title("Marker in Sydney")
+                    )
                 )
+                myMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+
+                if (weatherFromMap != null) {
+                    weatherFromMap =
+                        worldWeatherViewModel.getWeatherDataFromMap(
+                            latLng.latitude,
+                            latLng.longitude
+                        )
+                } else {
+                    weatherFromMap =
+                        worldWeatherViewModel.getWeatherDataFromMap(
+                            latLng.latitude,
+                            latLng.longitude
+                        )
+                    weatherFromMap?.observe(
+                        viewLifecycleOwner,
+                        { it ->
+                            if (it != null) {
+                                WeatherMapDialogFragment(it).show(
+                                    (context as AppCompatActivity).supportFragmentManager,
+                                    WeatherMapDialogFragment::class.java.name
+                                )
+                                myMarker?.title = weatherFromMap?.value?.timezone
+                            }
+                        })
+                }
             }
         }
     }

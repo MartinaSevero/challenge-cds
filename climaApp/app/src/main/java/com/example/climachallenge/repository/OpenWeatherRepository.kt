@@ -1,6 +1,5 @@
 package com.example.climachallenge.repository
 
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.climachallenge.common.MyApp
@@ -23,6 +22,25 @@ class OpenWeatherRepository {
 
     fun obtainWeatherData(lat: Double, lon: Double): MutableLiveData<OpenWeatherResponse>? {
         val call: Call<OpenWeatherResponse>? = openWeatherService?.getWeatherData(lat, lon, "hourly,minutely", "metric")
+        call?.enqueue(object : Callback<OpenWeatherResponse> {
+            override fun onResponse(call: Call<OpenWeatherResponse>, response: Response<OpenWeatherResponse>) {
+                if (response.isSuccessful) {
+                    weatherData.value = response.body()
+                } else {
+                    Toast.makeText(MyApp.instance, "Error in the response:" + response.errorBody(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<OpenWeatherResponse>, t: Throwable) {
+                Toast.makeText(MyApp.instance, "Error in the call", Toast.LENGTH_LONG).show()
+            }
+
+        })
+        return weatherData
+    }
+
+    fun obtainWeatherDataFromMap(lat: Double, lon: Double): MutableLiveData<OpenWeatherResponse>? {
+        val call: Call<OpenWeatherResponse>? = openWeatherService?.getWeatherData(lat, lon, "daily,hourly,minutely", "metric")
         call?.enqueue(object : Callback<OpenWeatherResponse> {
             override fun onResponse(call: Call<OpenWeatherResponse>, response: Response<OpenWeatherResponse>) {
                 if (response.isSuccessful) {

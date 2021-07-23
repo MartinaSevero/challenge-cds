@@ -1,7 +1,5 @@
 package com.example.climachallenge.retrofit.models
 
-import com.example.climachallenge.retrofit.models.WeatherData
-
 data class Current(
     val clouds: Double,
     val dew_point: Double,
