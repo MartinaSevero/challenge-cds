@@ -81,11 +81,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/weather_sunrise"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/image_view_weather_map_icon"
         app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_date"
         app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_wind_speed" />
 
@@ -94,11 +92,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/weather_sunset"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/image_view_weather_map_icon"
         app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_sunrise"
         app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_sunrise" />
 

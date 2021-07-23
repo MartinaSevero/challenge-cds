@@ -27,7 +27,7 @@
         android:id="@+id/text_view_weather_map_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/weather_date"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -61,12 +61,12 @@
         android:id="@+id/text_view_weather_map_wind_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="64dp"
         android:text="@string/weather_wind_speed"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_temp"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_humidity" />
+        app:layout_constraintStart_toEndOf="@+id/text_view_weather_map_humidity"
+        app:layout_constraintTop_toTopOf="@+id/text_view_weather_map_humidity" />
 
     <TextView
         android:id="@+id/text_view_weather_map_sunrise"
@@ -83,12 +83,12 @@
         android:id="@+id/text_view_weather_map_sunset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="64dp"
         android:text="@string/weather_sunset"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_sunrise"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_sunrise" />
+        app:layout_constraintStart_toEndOf="@+id/text_view_weather_map_sunrise"
+        app:layout_constraintTop_toTopOf="@+id/text_view_weather_map_sunrise" />
 
     <ImageView
         android:id="@+id/image_view_weather_map_icon"

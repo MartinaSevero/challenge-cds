@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
 import com.example.climachallenge.R
 import com.example.climachallenge.retrofit.models.OpenWeatherResponse
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -40,7 +40,6 @@ class WeatherMapDialogFragment(private val weatherData: OpenWeatherResponse) : D
         super.onDestroyView()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -95,20 +94,41 @@ class WeatherMapDialogFragment(private val weatherData: OpenWeatherResponse) : D
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun formatWeatherDate(datetime: Double): String {
-        val date = Date(datetime.toLong() * 1000).toInstant()
-        val localDateTime = LocalDateTime.ofInstant(date, ZoneId.systemDefault())
-
-        return localDateTime.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
+        var dateToReturn = ""
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val date = Date(datetime.toLong() * 1000).toInstant()
+            val localDateTime = LocalDateTime.ofInstant(date, ZoneId.systemDefault())
+            dateToReturn = localDateTime.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
+        } else {
+            return try {
+                val simpleDate = SimpleDateFormat("dd/MM/yyyy")
+                val date = Date(datetime.toLong() * 1000)
+                simpleDate.format(date)
+            } catch (e: Exception) {
+                e.toString()
+            }
+        }
+        return dateToReturn
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun formatSunData(datetime: Double): String {
-        val date = Date(datetime.toLong() * 1000).toInstant()
-        val localDateTime = LocalDateTime.ofInstant(date, ZoneId.systemDefault())
+        var dateToReturn = ""
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val date = Date(datetime.toLong() * 1000).toInstant()
+            val localDateTime = LocalDateTime.ofInstant(date, ZoneId.systemDefault())
+            dateToReturn = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+        } else {
+            return try {
+                val simpleDate = SimpleDateFormat("HH:mm")
+                val date = Date(datetime.toLong() * 1000)
 
-        return localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+                simpleDate.format(date)
+            } catch (e: Exception) {
+                e.toString()
+            }
+        }
+        return dateToReturn
     }
 
 }

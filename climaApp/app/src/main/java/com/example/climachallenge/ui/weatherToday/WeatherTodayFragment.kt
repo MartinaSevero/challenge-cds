@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context.LOCATION_SERVICE
 import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -70,7 +71,12 @@ class WeatherTodayFragment : Fragment(), PermissionListener {
             }
         }
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
-        checkPermissions()
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) { // To avoid problems with older versions
+            checkPermissions()
+        }
+        else {
+            setAdapterData()
+        }
 
         return view
     }

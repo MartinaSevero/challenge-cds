@@ -1,16 +1,16 @@
 package com.example.climachallenge.ui.weatherToday
 
 import android.os.Build
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.RecyclerView
 import com.example.climachallenge.R
 import com.example.climachallenge.retrofit.models.Daily
 import com.example.climachallenge.retrofit.models.OpenWeatherResponse
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -37,7 +37,6 @@ class WeatherTodayRecyclerViewAdapter
         return ViewHolder(view)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dailyWeatherList[position]
         val date = formatWeatherDate(item)
@@ -86,19 +85,42 @@ class WeatherTodayRecyclerViewAdapter
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun formatWeatherDate(item: Daily): String {
-        val date = Date(item.dt.toLong() * 1000).toInstant()
-        val localDateTime = LocalDateTime.ofInstant(date, ZoneId.systemDefault())
-        return localDateTime.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
+        var dateToReturn = ""
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val date = Date(item.dt.toLong() * 1000).toInstant()
+            val localDateTime = LocalDateTime.ofInstant(date, ZoneId.systemDefault())
+            dateToReturn = localDateTime.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
+        } else {
+            return try {
+                val simpleDate = SimpleDateFormat("dd/MM/yyyy")
+                val date = Date(item.dt.toLong() * 1000)
+
+                simpleDate.format(date)
+            } catch (e: Exception) {
+                e.toString()
+            }
+        }
+        return dateToReturn
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun formatSunData(datetime: Double): String {
-        val date = Date(datetime.toLong() * 1000).toInstant()
-        val localDateTime = LocalDateTime.ofInstant(date, ZoneId.systemDefault())
+        var dateToReturn = ""
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val date = Date(datetime.toLong() * 1000).toInstant()
+            val localDateTime = LocalDateTime.ofInstant(date, ZoneId.systemDefault())
+            dateToReturn = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+        } else {
+            return try {
+                val simpleDate = SimpleDateFormat("HH:mm")
+                val date = Date(datetime.toLong() * 1000)
 
-        return localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+                simpleDate.format(date)
+            } catch (e: Exception) {
+                e.toString()
+            }
+        }
+        return dateToReturn
     }
 
     override fun getItemCount(): Int = dailyWeatherList.size
