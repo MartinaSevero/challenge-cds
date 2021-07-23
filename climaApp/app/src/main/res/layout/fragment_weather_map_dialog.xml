@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingTop="25dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="25dp"
+    tools:context=".ui.worldWeather.WeatherMapDialogFragment">
+
+    <TextView
+        android:id="@+id/text_view_weather_map_timezone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/weather_map_timezone"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_weather_map_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/weather_date"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/image_view_weather_map_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_timezone" />
+
+    <TextView
+        android:id="@+id/text_view_weather_map_temp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/weather_map_temp"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/image_view_weather_map_icon"
+        app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_date"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_date" />
+
+    <TextView
+        android:id="@+id/text_view_weather_map_humidity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/weather_humidity"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/image_view_weather_map_icon"
+        app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_date"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_temp" />
+
+    <TextView
+        android:id="@+id/text_view_weather_map_wind_speed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/weather_wind_speed"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/image_view_weather_map_icon"
+        app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_date"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_humidity" />
+
+    <TextView
+        android:id="@+id/text_view_weather_map_sunrise"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/weather_sunrise"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_date"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_wind_speed" />
+
+    <TextView
+        android:id="@+id/text_view_weather_map_sunset"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/weather_sunset"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/text_view_weather_map_sunrise"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_weather_map_sunrise" />
+
+    <ImageView
+        android:id="@+id/image_view_weather_map_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/weather_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_view_weather_map_date"
+        tools:src="@drawable/ic_weather_today" />
+
+    <TextView
+        android:id="@+id/text_view_weather_map_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:lines="3"
+        android:text="@string/weather_description"
+        android:textAlignment="center"
+        android:textColor="#7C7C7C"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/image_view_weather_map_icon"
+        app:layout_constraintStart_toStartOf="@+id/image_view_weather_map_icon"
+        app:layout_constraintTop_toBottomOf="@+id/image_view_weather_map_icon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_today">
+
+    <fragment
+        android:id="@+id/navigation_today"
+        android:name="com.example.climachallenge.ui.weatherToday.WeatherTodayFragment"
+        android:label="@string/title_today"
+        tools:layout="@layout/fragment_weather_today_list" />
+
+    <fragment
+        android:id="@+id/navigation_worldmap"
+        android:name="com.example.climachallenge.ui.worldWeather.WorldWeatherFragment"
+        android:label="@string/title_worldmap"
+        tools:layout="@layout/fragment_world_weather" />
+
+</navigation>
